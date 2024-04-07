@@ -6,7 +6,7 @@
 /*   By: anovio-c <anovio-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 14:20:55 by anovio-c          #+#    #+#             */
-/*   Updated: 2024/03/27 15:26:08 by anovio-c         ###   ########.fr       */
+/*   Updated: 2024/04/07 18:57:04 by asiercara        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,48 @@
 # define MALLOC_ERR "malloc() failed to allocate memory"
 # define MUTEX_INIT_ERR "Failed to initialize mutex"
 
-typedef struct	s_args
+typedef struct	s_philo
+{
+	int					num;
+	bool				is_eating;
+	pthread_t			thread;
+	long int			last_eat;
+	struct t_data		*data;
+	pthread_mutex_t		*fork_r;
+	pthread_mutex_t		fork_l;
+}						t_philo;
+
+
+typedef struct	s_data
 {
 	int					num_of_philo;
 	int					time_to_die;
 	int					time_to_eat;
 	int					time_to_sleep;
-	int					must_eat_times;
-}						t_args;
+	int					num_eat;
+	int					philo_eat;
+	t_philo				*philo;
+	pthread_mutex_t		print;
+	pthread_mutex_t		m_stop;
+	pthread_mutex_t		m_eat;
+	pthread_mutex_t		dead;
+}						t_data;
 
+// Init struct
+
+int	vars_init(t_data *data, char **argv);
+
+
+// Philosophers utils
+
+int	check_input(char **args);
+int	ft_error(char *str, t_data *data);
+
+
+// Libft utils
+
+int	ft_atoi(char *str);
+int	ft_isspace(int ch);
+int	ft_isdigit(int ch);
+
+#endif

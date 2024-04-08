@@ -6,7 +6,7 @@
 /*   By: asiercara <marvin@42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 21:49:12 by asiercara         #+#    #+#             */
-/*   Updated: 2024/04/07 19:00:01 by asiercara        ###   ########.fr       */
+/*   Updated: 2024/04/08 21:18:06 by asiercara        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,3 +41,10 @@ int	check_input(char **argv)
 	return (0);
 }
 
+long int	get_time(void)
+{
+	struct timeval	time_value;
+
+	gettimeofday(&time_value, NULL);
+	return (time_value.tv_sec * 1000 + time_value.tv_usec / 1000);
+}

@@ -6,7 +6,7 @@
 /*   By: anovio-c <anovio-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 14:20:55 by anovio-c          #+#    #+#             */
-/*   Updated: 2024/04/07 18:57:04 by asiercara        ###   ########.fr       */
+/*   Updated: 2024/04/08 21:20:59 by asiercara        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,13 @@
 
 # define MICROSEC 1000
 
-// Code Errors
-
-# define INVALID_ARGS_ERR "Invalid arguments"
-# define THREAD_CREATE_ERR "Failed to create a thread"
-# define THREAD_JOIN_ERR "Failed to join a thread"
-# define MALLOC_ERR "malloc() failed to allocate memory"
-# define MUTEX_INIT_ERR "Failed to initialize mutex"
-
 typedef struct	s_philo
 {
 	int					num;
 	bool				is_eating;
 	pthread_t			thread;
 	long int			last_eat;
+	int					moves_count;
 	struct t_data		*data;
 	pthread_mutex_t		*fork_r;
 	pthread_mutex_t		fork_l;
@@ -45,12 +38,13 @@ typedef struct	s_philo
 
 typedef struct	s_data
 {
-	int					num_of_philo;
+	int					num_of_philos;
 	int					time_to_die;
 	int					time_to_eat;
 	int					time_to_sleep;
 	int					num_eat;
 	int					philo_eat;
+	long int			time_start;
 	t_philo				*philo;
 	pthread_mutex_t		print;
 	pthread_mutex_t		m_stop;
@@ -60,19 +54,20 @@ typedef struct	s_data
 
 // Init struct
 
-int	vars_init(t_data *data, char **argv);
+int			vars_init(t_data *data, char **argv);
 
 
 // Philosophers utils
 
-int	check_input(char **args);
-int	ft_error(char *str, t_data *data);
+int			check_input(char **args);
+int			ft_error(char *str, t_data *data);
+long int	get_time(void);
 
 
 // Libft utils
 
-int	ft_atoi(char *str);
-int	ft_isspace(int ch);
-int	ft_isdigit(int ch);
+int			ft_atoi(char *str);
+int			ft_isspace(int ch);
+int			ft_isdigit(int ch);
 
 #endif

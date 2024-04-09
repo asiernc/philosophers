@@ -3,14 +3,18 @@
 #include <pthread.h>
 #include <sys/wait.h>
 
+int mails = 0;
+
 void	*ft_routine()
 {
-	printf("Hello from the thread\n");
-	sleep(3);
-	printf("Good bye from the thread\n");
+	//printf("Hello from the thread\n");
+	//sleep(3);
+	//printf("Good bye from the thread\n");
+	for (int i = 0; i < 1000000; i++)
+		mails++;
 }
 
-/*int	main(void)
+int	main(void)
 {
 	pthread_t	t1;
 	pthread_t	t2;
@@ -23,10 +27,11 @@ void	*ft_routine()
 		return (1);
 	if (pthread_join(t2, NULL) != 0)
 		return (1);
+	printf("Valor de mails: %d\n", mails);
 	return (0);
-}*/
+}
 
-int	main(int argc, char **argv)
+/*int	main(int argc, char **argv)
 {
 	int	x;
 	int	pid;
@@ -42,4 +47,4 @@ int	main(int argc, char **argv)
 	if (pid != 0)
 		wait(NULL);
 	return (0);
-}
+}*/

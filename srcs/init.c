@@ -6,16 +6,14 @@
 /*   By: asiercara <marvin@42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 22:11:23 by asiercara         #+#    #+#             */
-/*   Updated: 2024/04/08 21:49:07 by asiercara        ###   ########.fr       */
+/*   Updated: 2024/04/09 16:37:07 by anovio-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
 
-int	vars_init(t_data *data, char **argv)
+int	data_init(t_data *data, char **argv)
 {
-	data->time_start = get_time();
-	printf("time start = %ld\n", data->time_start);
 	if (check_input(argv))
 		ft_error("Invalid args.", NULL);
 	data->philo_eat = 0; // start eat
@@ -62,5 +60,7 @@ int	philos_init(t_data *data)
 		if (pthread_join(&data->philo[i].thread, NULL) != 0)
 			ft_error("Thread join error", NULL);
 	}
+	data->time_start = get_time();
+	printf("time start = %ld\n", data->time_start);
 	return (0);
 }	

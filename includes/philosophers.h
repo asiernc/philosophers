@@ -6,7 +6,7 @@
 /*   By: anovio-c <anovio-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 14:20:55 by anovio-c          #+#    #+#             */
-/*   Updated: 2024/04/08 21:20:59 by asiercara        ###   ########.fr       */
+/*   Updated: 2024/04/09 16:01:34 by anovio-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdlib.h> // malloc(), free()
 # include <unistd.h> // write(), usleep()
 # include <sys/time.h> // gettimeofday()
-# include <pthread.h> // POSIX thread API
+# include <pthread.h> // thread API
 # include <stdbool.h> // boolean data type
 
 # define MICROSEC 1000
@@ -54,7 +54,7 @@ typedef struct	s_data
 
 // Init struct
 
-int			vars_init(t_data *data, char **argv);
+int			data_init(t_data *data, char **argv);
 
 
 // Philosophers utils

@@ -6,7 +6,7 @@
 /*   By: asiercara <marvin@42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 21:11:47 by asiercara         #+#    #+#             */
-/*   Updated: 2024/04/07 19:00:28 by asiercara        ###   ########.fr       */
+/*   Updated: 2024/04/09 16:01:01 by anovio-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(int argc, char **argv)
 
 	if (argc < 5 || argc > 6)
 		return (1);
-	if (vars_init(&data, argv) == 1)
+	if (data_init(&data, argv) == 1)
 	{
 		free(data.philo);
 		ft_error("Invalid args.", NULL);

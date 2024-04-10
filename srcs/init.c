@@ -6,7 +6,7 @@
 /*   By: asiercara <marvin@42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 22:11:23 by asiercara         #+#    #+#             */
-/*   Updated: 2024/04/09 16:37:07 by anovio-c         ###   ########.fr       */
+/*   Updated: 2024/04/10 17:25:35 by anovio-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	data_init(t_data *data, char **argv)
 {
 	if (check_input(argv))
 		ft_error("Invalid args.", NULL);
+	data->stop = 0;
 	data->philo_eat = 0; // start eat
 	data->num_of_philos = ft_atoi(argv[1]);
 	data->time_to_die = ft_atoi(argv[2]);
@@ -28,7 +29,10 @@ int	data_init(t_data *data, char **argv)
 	data->philo = malloc(sizeof(t_philo) * data->num_of_philo);
 	if (!data->philo)
 		ft_error("Allocation error", NULL);
-
+	pthread_mutex_init(&data->print_lock, NULL);
+	pthread_mutex_init(&data->stop_lock, NULL);
+	pthread_mutex_init(&data->eat_lock, NULL);
+	pthread_mutex_init(&data->dead_lock, NULL);
 	return (0);
 }
 

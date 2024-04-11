@@ -6,7 +6,7 @@
 /*   By: anovio-c <anovio-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 14:20:55 by anovio-c          #+#    #+#             */
-/*   Updated: 2024/04/10 17:25:37 by anovio-c         ###   ########.fr       */
+/*   Updated: 2024/04/11 17:26:03 by anovio-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@
 
 typedef struct	s_philo
 {
+	pthread_t			thread;
 	int					num;
 	int					is_eating;
-	pthread_t			thread;
-	long int			last_eat;
-	int					moves_count;
+	size_t				last_eat;
+	int					meals_eaten;
 	struct t_data		*data;
 	pthread_mutex_t		*fork_r;
 	pthread_mutex_t		fork_l;
@@ -39,16 +39,16 @@ typedef struct	s_philo
 typedef struct	s_data
 {
 	int					num_of_philos;
-	int					time_to_die;
-	int					time_to_eat;
-	int					time_to_sleep;
-	int					num_eat;
+	size_t				time_to_die;
+	size_t				time_to_eat;
+	size_t				time_to_sleep;
+	int					num_times_to_eat;
 	int					philo_eat;
-	int					stop;
-	long int			time_start;
+	int					dead_flag;//stop
+	size_t				start_time;
 	t_philo				*philo;
 	pthread_mutex_t		print_lock;
-	pthread_mutex_t		stop_lock;
+	//pthread_mutex_t		stop_lock;
 	pthread_mutex_t		eat_lock;
 	pthread_mutex_t		dead_lock;
 }						t_data;
@@ -63,7 +63,8 @@ int			philo_init(t_data *data);
 
 int			check_input(char **args);
 int			ft_error(char *str, t_data *data);
-long int	get_time(void);
+size_t		get_time(void);
+int			ft_usleep(size_t miliseconds);
 
 
 // Libft utils

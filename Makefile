@@ -6,7 +6,7 @@
 #    By: anovio-c <anovio-c@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/19 12:40:35 by anovio-c          #+#    #+#              #
-#    Updated: 2024/04/07 18:51:28 by asiercara        ###   ########.fr        #
+#    Updated: 2024/04/11 16:49:03 by anovio-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,9 +21,6 @@ SRCS		=	srcs/main.c 			\
 				srcs/init.c				\
 				srcs/utils.c			\
 				srcs/utils_libft.c		\
-
-#BSRCS		= 	srcs/pipex_bonus.c		\
-				srcs/ft_utils_bonus.c
 
 OBJS		=	$(SRCS:%.c=%.o)
 

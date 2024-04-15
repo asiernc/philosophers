@@ -6,7 +6,7 @@
 /*   By: asiercara <marvin@42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 21:49:12 by asiercara         #+#    #+#             */
-/*   Updated: 2024/04/11 16:43:22 by anovio-c         ###   ########.fr       */
+/*   Updated: 2024/04/15 16:25:03 by anovio-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,5 @@ size_t	get_time(void)
 
 	if (gettimeofday(&time_value, NULL) == -1)
 		ft_error("gettimeofday() error", NULL);
-	return (time_value.tv_sec * 1000 + time_value.tv_usec / 1000);
+	return ((time_value.tv_sec * 1000) + (time_value.tv_usec / 1000));
 }

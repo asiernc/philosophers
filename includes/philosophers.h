@@ -6,7 +6,7 @@
 /*   By: anovio-c <anovio-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 14:20:55 by anovio-c          #+#    #+#             */
-/*   Updated: 2024/04/15 16:25:07 by anovio-c         ###   ########.fr       */
+/*   Updated: 2024/04/15 17:00:22 by anovio-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,10 @@ void	philo_routine(void *ptr);
 void	is_thinking(t_philo *philo);
 void	is_sleeping(t_philo *philo);
 void	is_eating(t_philo *philo);
+
+// Controller
+
+void	*controller(void *ptr);
 
 // Philosophers utils
 

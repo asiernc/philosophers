@@ -6,7 +6,7 @@
 #    By: anovio-c <anovio-c@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/19 12:40:35 by anovio-c          #+#    #+#              #
-#    Updated: 2024/04/11 16:49:03 by anovio-c         ###   ########.fr        #
+#    Updated: 2024/04/15 17:18:15 by anovio-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,8 @@ RM			=	rm -f
 
 SRCS		=	srcs/main.c 			\
 				srcs/init.c				\
+				srcs/philo_routine.c	\
+				srcs/controller.c		\
 				srcs/utils.c			\
 				srcs/utils_libft.c		\
 

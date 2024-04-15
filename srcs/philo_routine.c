@@ -6,13 +6,13 @@
 /*   By: anovio-c <anovio-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 15:40:53 by anovio-c          #+#    #+#             */
-/*   Updated: 2024/04/15 12:16:01 by anovio-c         ###   ########.fr       */
+/*   Updated: 2024/04/15 17:20:33 by anovio-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
 
-void	philo_routine(void *ptr)
+void	*philo_routine(void *ptr)
 {
 	t_philo	*philo;
 

@@ -6,22 +6,18 @@
 /*   By: anovio-c <anovio-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 14:20:55 by anovio-c          #+#    #+#             */
-/*   Updated: 2024/04/15 17:00:22 by anovio-c         ###   ########.fr       */
+/*   Updated: 2024/04/15 17:21:34 by anovio-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILOSOPHERS_H
 # define PHILOSOPHERS_H
 
-# include <memory.h> // memset()
 # include <stdio.h> // printf()
 # include <stdlib.h> // malloc(), free()
 # include <unistd.h> // write(), usleep()
 # include <sys/time.h> // gettimeofday()
 # include <pthread.h> // thread API
-# include <stdbool.h> // boolean data type
-
-# define MICROSEC 1000
 
 typedef struct	s_philo
 {
@@ -40,30 +36,26 @@ typedef struct	s_philo
 	pthread_mutex_t		fork_l;
 }						t_philo;
 
-
 typedef struct	s_data
 {
 	int					num_of_philos;
-	int					dead_flag;//stop
+	int					dead_flag;
 	t_philo				*philo;
 	pthread_mutex_t		print_mutex;
-	//pthread_mutex_t		stop_lock;
 	pthread_mutex_t		eat_mutex;
 	pthread_mutex_t		dead_mutex;
 }						t_data;
 
-//num times to eat == -1??
-
 // Init struct
 
 int			structure_init(t_data *data, char **argv);
-int			philo_init(t_data *data);
+int			philos_init(t_data *data);
 void		fill_fixes_values(t_philo *philo, char **argv);
 int			threads_init(t_data *data);
 
 // Philo routine
 
-void	philo_routine(void *ptr);
+void	*philo_routine(void *ptr);
 void	is_thinking(t_philo *philo);
 void	is_sleeping(t_philo *philo);
 void	is_eating(t_philo *philo);
@@ -71,6 +63,8 @@ void	is_eating(t_philo *philo);
 // Controller
 
 void	*controller(void *ptr);
+int		check_is_dead(t_philo *philo);
+int		check_is_all_ate(t_philo *philos);
 
 // Philosophers utils
 

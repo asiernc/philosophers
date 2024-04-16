@@ -6,7 +6,7 @@
 /*   By: anovio-c <anovio-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 14:20:55 by anovio-c          #+#    #+#             */
-/*   Updated: 2024/04/15 17:21:34 by anovio-c         ###   ########.fr       */
+/*   Updated: 2024/04/16 16:28:51 by anovio-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,11 @@ typedef struct	s_philo
 	size_t				start_time;
 	size_t				last_eat;
 	int					meals_eaten;
-	struct t_data		*data;
+	int					*dead;
+	struct s_data		*data;
 	pthread_mutex_t		*fork_r;
 	pthread_mutex_t		fork_l;
+	//pthread_mutex_t		*print_mutex;
 }						t_philo;
 
 typedef struct	s_data
@@ -48,14 +50,15 @@ typedef struct	s_data
 
 // Init struct
 
-int			structure_init(t_data *data, char **argv);
-int			philos_init(t_data *data);
+void		structure_init(t_data *data, char **argv);
+void		philos_init(t_data *data, char **argv);
 void		fill_fixes_values(t_philo *philo, char **argv);
 int			threads_init(t_data *data);
 
 // Philo routine
 
 void	*philo_routine(void *ptr);
+int		routine_loop(t_philo *philo);
 void	is_thinking(t_philo *philo);
 void	is_sleeping(t_philo *philo);
 void	is_eating(t_philo *philo);
@@ -63,8 +66,9 @@ void	is_eating(t_philo *philo);
 // Controller
 
 void	*controller(void *ptr);
+int		check_philo(t_philo *philo, size_t time_to_die);
 int		check_is_dead(t_philo *philo);
-int		check_is_all_ate(t_philo *philos);
+int		check_all_ate(t_philo *philo);
 
 // Philosophers utils
 
@@ -73,6 +77,7 @@ int			ft_error(char *str, t_data *data);
 void		print_msg(char *str, int philo_num, t_philo *philo);
 size_t		get_time(void);
 int			ft_usleep(size_t miliseconds);
+void		destroy_mutex(t_data *data);
 
 
 // Libft utils

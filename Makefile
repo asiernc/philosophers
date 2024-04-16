@@ -6,7 +6,7 @@
 #    By: anovio-c <anovio-c@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/19 12:40:35 by anovio-c          #+#    #+#              #
-#    Updated: 2024/04/15 17:18:15 by anovio-c         ###   ########.fr        #
+#    Updated: 2024/04/16 11:09:56 by anovio-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME		=	philo
 
 CC			=	gcc
 INCL	 	=	includes
-CFLAGS		=	-Wall -Wextra -Werror -I$(INCL)
+CFLAGS		=	-Wall -Wextra -Werror -g -I$(INCL)
 RM			=	rm -f
 
 SRCS		=	srcs/main.c 			\

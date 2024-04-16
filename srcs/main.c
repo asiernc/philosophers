@@ -6,11 +6,26 @@
 /*   By: asiercara <marvin@42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 21:11:47 by asiercara         #+#    #+#             */
-/*   Updated: 2024/04/15 17:22:27 by anovio-c         ###   ########.fr       */
+/*   Updated: 2024/04/16 12:03:00 by anovio-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
+
+void	destroy_mutex(t_data *data)
+{
+	int	i;
+
+	pthread_mutex_destroy(&data->print_mutex);
+	pthread_mutex_destroy(&data->eat_mutex);
+	pthread_mutex_destroy(&data->dead_mutex);
+	i = -1;
+	while (++i < data->num_of_philos)
+	{
+		pthread_mutex_destroy(data->philo[i].fork_r);
+	}
+	free(data->philo);
+}
 
 int	main(int argc, char **argv)
 {
@@ -21,8 +36,8 @@ int	main(int argc, char **argv)
 	if (check_input(argv))
 		return (1);
 	structure_init(&data, argv);
-	philos_init(&data);
+	philos_init(&data, argv);
 	threads_init(&data);
-	//clear_all(NULL, &data);
+	destroy_mutex(&data);
 	return (0);
 }

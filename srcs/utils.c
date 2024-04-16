@@ -6,7 +6,7 @@
 /*   By: asiercara <marvin@42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 21:49:12 by asiercara         #+#    #+#             */
-/*   Updated: 2024/04/15 16:25:03 by anovio-c         ###   ########.fr       */
+/*   Updated: 2024/04/16 15:25:50 by anovio-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ int	ft_usleep(size_t miliseconds)
 {
 	size_t	start;
 
-	start = get_current_time();
-	while ((get_current_time() - start) < miliseconds)
+	start = get_time();
+	while ((get_time() - start) < miliseconds)
 		usleep(500);
 	return (0);
 }

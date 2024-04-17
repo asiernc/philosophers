@@ -6,7 +6,7 @@
 /*   By: anovio-c <anovio-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 10:55:04 by anovio-c          #+#    #+#             */
-/*   Updated: 2024/04/16 17:16:24 by anovio-c         ###   ########.fr       */
+/*   Updated: 2024/04/16 21:58:20 by asiercara        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,14 @@ void	print_msg(char *str, int philo_num, t_philo *philo)
 	pthread_mutex_lock(&philo->data->print_mutex);
 	curr_time = get_time() - philo->start_time;
 	if (routine_loop(philo) == 0)
-		printf("%zu %d %s\n", curr_time, philo_num, str);
+		printf("%zu \033[1;34m%d\033[0m %s\n", curr_time, philo_num, str);
 	pthread_mutex_unlock(&philo->data->print_mutex);
 }
 
 int	check_philo(t_philo *philo, size_t time_to_die)
 {
-	//size_t	time_to_die;
-
-	//time_to_die = philo->time_to_die;
 	pthread_mutex_lock(&philo->data->eat_mutex);
-	if (/*time_to_die <= */(get_time() - philo->last_eat) >= time_to_die
+	if (time_to_die <= (get_time() - philo->last_eat)// >= time_to_die
 		&& philo->is_eating == 0)
 	{
 		pthread_mutex_unlock(&philo->data->eat_mutex);
@@ -39,7 +36,7 @@ int	check_philo(t_philo *philo, size_t time_to_die)
 	return (0);
 }
 
-int		check_is_dead(t_philo *philo)
+int	check_is_dead(t_philo *philo)
 {
 	int	i;
 
@@ -48,10 +45,9 @@ int		check_is_dead(t_philo *philo)
 	{
 		if (check_philo(&philo[i], philo[i].time_to_die))
 		{
-			print_msg("is died", philo[i].num, philo);
+			print_msg("is \033[1;31mdied\033[0m", philo[i].num, philo);
 			pthread_mutex_lock(&philo[0].data->dead_mutex);
-			//printf("inside died\n");
-			philo->data->dead_flag = 1;//*philo->dead
+			philo->data->dead_flag = 1;
 			pthread_mutex_unlock(&philo[0].data->dead_mutex);
 			return (1);
 		}
@@ -60,24 +56,24 @@ int		check_is_dead(t_philo *philo)
 	return (0);
 }
 
-int		check_all_ate(t_philo *philo)
+int	check_all_ate(t_philo *philo)
 {
 	int	i;
-	int	finish_eating;
+	int	finish;
 
-	finish_eating = 0;
-	if (philo[0].num_times_to_eat == -1)
-		return (1);
+	if (philo->num_times_to_eat == -1)
+		return (0);
 	i = 0;
+	finish = 0;
 	while (i < philo[0].data->num_of_philos)
 	{
 		pthread_mutex_lock(&philo[i].data->eat_mutex);
 		if (philo[i].meals_eaten >= philo[i].num_times_to_eat)
-			finish_eating++;
+			finish++;
 		pthread_mutex_unlock(&philo[i].data->eat_mutex);
 		i++;
 	}
-	if (finish_eating == philo[0].data->num_of_philos)
+	if (finish == philo[0].data->num_of_philos)
 	{
 		pthread_mutex_lock(&philo[0].data->dead_mutex);
 		*philo->dead = 1;
@@ -97,7 +93,6 @@ void	*controller(void *ptr)
 		if (check_is_dead(philos_struct) == 1
 			|| check_all_ate(philos_struct) == 1)
 			break ;
-		//printf("in in\n");
 	}
 	return (ptr);
 }

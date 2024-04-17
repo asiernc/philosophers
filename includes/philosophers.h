@@ -6,7 +6,7 @@
 /*   By: anovio-c <anovio-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 14:20:55 by anovio-c          #+#    #+#             */
-/*   Updated: 2024/04/16 16:28:51 by anovio-c         ###   ########.fr       */
+/*   Updated: 2024/04/16 22:01:20 by asiercara        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ typedef struct	s_philo
 	struct s_data		*data;
 	pthread_mutex_t		*fork_r;
 	pthread_mutex_t		fork_l;
-	//pthread_mutex_t		*print_mutex;
 }						t_philo;
 
 typedef struct	s_data
@@ -73,7 +72,7 @@ int		check_all_ate(t_philo *philo);
 // Philosophers utils
 
 int			check_input(char **args);
-int			ft_error(char *str, t_data *data);
+int			ft_error(char *str);
 void		print_msg(char *str, int philo_num, t_philo *philo);
 size_t		get_time(void);
 int			ft_usleep(size_t miliseconds);

@@ -6,7 +6,7 @@
 /*   By: anovio-c <anovio-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 15:40:53 by anovio-c          #+#    #+#             */
-/*   Updated: 2024/04/16 17:18:27 by anovio-c         ###   ########.fr       */
+/*   Updated: 2024/04/16 21:48:20 by asiercara        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,19 +42,19 @@ void	*philo_routine(void *ptr)
 
 void	is_thinking(t_philo *philo)
 {
-	print_msg("is thinking", philo->num, philo);
+	print_msg("\033[33mis thinking\033[0m", philo->num, philo);
 }
 
 void	is_sleeping(t_philo *philo)
 {
-	print_msg("is sleeping", philo->num, philo);
+	print_msg("\033[35mis sleeping\033[0m", philo->num, philo);
 	ft_usleep(philo->time_to_sleep);
 }
 
 void	is_eating(t_philo *philo)
 {
 	pthread_mutex_lock(philo->fork_r);
-	print_msg("has taken a fork", philo->num, philo);
+	print_msg("has taken a \033[32mfork\033[0m", philo->num, philo);
 	if (philo->data->num_of_philos == 1)
 	{
 		ft_usleep(philo->time_to_die);
@@ -63,9 +63,9 @@ void	is_eating(t_philo *philo)
 		return ;
 	}
 	pthread_mutex_lock(&philo->fork_l);
-	print_msg("has taken a fork", philo->num, philo);
+	print_msg("has taken a \033[32mfork\033[0m", philo->num, philo);
 	philo->is_eating = 1;
-	print_msg("is eating", philo->num, philo);
+	print_msg("\033[32mis eating\033[0m", philo->num, philo);
 	pthread_mutex_lock(&philo->data->eat_mutex);
 	philo->last_eat = get_time();
 	philo->meals_eaten++;

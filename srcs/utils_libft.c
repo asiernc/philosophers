@@ -6,7 +6,7 @@
 /*   By: asiercara <marvin@42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 21:42:25 by asiercara         #+#    #+#             */
-/*   Updated: 2024/04/06 22:10:52 by asiercara        ###   ########.fr       */
+/*   Updated: 2024/04/16 22:07:11 by asiercara        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	ft_isspace(int ch)
 	return (0);
 }
 
-int ft_atoi(char *str)
+int	ft_atoi(char *str)
 {
 	int	sign;
 	int	res;

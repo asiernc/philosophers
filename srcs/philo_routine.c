@@ -6,7 +6,7 @@
 /*   By: anovio-c <anovio-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 15:40:53 by anovio-c          #+#    #+#             */
-/*   Updated: 2024/04/16 21:48:20 by asiercara        ###   ########.fr       */
+/*   Updated: 2024/04/17 10:04:13 by anovio-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ void	is_eating(t_philo *philo)
 	if (philo->data->num_of_philos == 1)
 	{
 		ft_usleep(philo->time_to_die);
-		//printf("inside eating\n");
 		pthread_mutex_unlock(philo->fork_r);
 		return ;
 	}

@@ -6,7 +6,7 @@
 #    By: anovio-c <anovio-c@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/19 12:40:35 by anovio-c          #+#    #+#              #
-#    Updated: 2024/04/16 22:32:10 by asiercara        ###   ########.fr        #
+#    Updated: 2024/04/17 09:52:00 by anovio-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,14 +20,14 @@ RM			=	rm -f
 SRCDIR		=	srcs/
 OBJDIR		=	obj/
 
-SRC			=	main.c 				\
-				init.c				\
-				philo_routine.c		\
-				controller.c		\
-				utils.c				\
-				utils_libft.c		\
+SRC			=	srcs/main.c 			\
+				srcs/init.c				\
+				srcs/philo_routine.c	\
+				srcs/controller.c		\
+				srcs/utils.c			\
+				srcs/utils_libft.c		\
 
-OBJS		=	$(addprefix $(OBJDIR), $(SRC:%.c=%.o))
+OBJS		=	$(SRC:%.c=%.o)
 
 all:			$(NAME)
 
@@ -35,9 +35,7 @@ $(NAME):		$(OBJS) Makefile #norm
 				@$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
 				@echo "Linked into executable \033[0;32mphilo\033[0m with norminette \033[0;32mOK\033[0m."
 
-#$(OBJDIR)/%.o:	$(SRCDIR)%.c
-$(OBJDIR)/%.o: $(SRCDIR)%.c
-				@mkdir -p $(OBJDIR)
+.c.o:
 				@$(CC) $(CFLAGS) -c $< -o $@
 				@echo "Compiling $<."
 

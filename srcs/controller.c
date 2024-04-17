@@ -6,7 +6,7 @@
 /*   By: anovio-c <anovio-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 10:55:04 by anovio-c          #+#    #+#             */
-/*   Updated: 2024/04/16 21:58:20 by asiercara        ###   ########.fr       */
+/*   Updated: 2024/04/17 10:03:47 by anovio-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@ void	print_msg(char *str, int philo_num, t_philo *philo)
 int	check_philo(t_philo *philo, size_t time_to_die)
 {
 	pthread_mutex_lock(&philo->data->eat_mutex);
-	if (time_to_die <= (get_time() - philo->last_eat)// >= time_to_die
-		&& philo->is_eating == 0)
+	if (time_to_die <= (get_time() - philo->last_eat) && philo->is_eating == 0)
 	{
 		pthread_mutex_unlock(&philo->data->eat_mutex);
 		return (1);
@@ -47,7 +46,7 @@ int	check_is_dead(t_philo *philo)
 		{
 			print_msg("is \033[1;31mdied\033[0m", philo[i].num, philo);
 			pthread_mutex_lock(&philo[0].data->dead_mutex);
-			philo->data->dead_flag = 1;
+			*philo->dead = 1;
 			pthread_mutex_unlock(&philo[0].data->dead_mutex);
 			return (1);
 		}
@@ -85,14 +84,11 @@ int	check_all_ate(t_philo *philo)
 
 void	*controller(void *ptr)
 {
-	t_philo	*philos_struct;
+	t_philo	*philos_ptr;
 
-	philos_struct = (t_philo *)ptr;
+	philos_ptr = (t_philo *)ptr;
 	while (1)
-	{
-		if (check_is_dead(philos_struct) == 1
-			|| check_all_ate(philos_struct) == 1)
+		if (check_is_dead(philos_ptr) == 1 || check_all_ate(philos_ptr) == 1)
 			break ;
-	}
 	return (ptr);
 }

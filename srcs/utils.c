@@ -6,17 +6,11 @@
 /*   By: asiercara <marvin@42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 21:49:12 by asiercara         #+#    #+#             */
-/*   Updated: 2024/04/16 22:01:27 by asiercara        ###   ########.fr       */
+/*   Updated: 2024/04/17 11:00:02 by anovio-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
-
-int	ft_error(char *str)
-{
-	perror(str);
-	exit(1);
-}
 
 int	check_input(char **argv)
 {
@@ -53,6 +47,6 @@ size_t	get_time(void)
 	struct timeval	time_value;
 
 	if (gettimeofday(&time_value, NULL) == -1)
-		ft_error("gettimeofday() error");
+		destroy_mutex("gettimeofday() error", NULL);
 	return ((time_value.tv_sec * 1000) + (time_value.tv_usec / 1000));
 }

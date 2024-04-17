@@ -6,7 +6,7 @@
 #    By: anovio-c <anovio-c@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/19 12:40:35 by anovio-c          #+#    #+#              #
-#    Updated: 2024/04/17 09:52:00 by anovio-c         ###   ########.fr        #
+#    Updated: 2024/04/17 11:07:31 by anovio-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ OBJS		=	$(SRC:%.c=%.o)
 
 all:			$(NAME)
 
-$(NAME):		$(OBJS) Makefile #norm
+$(NAME):		$(OBJS) Makefile norm
 				@$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
 				@echo "Linked into executable \033[0;32mphilo\033[0m with norminette \033[0;32mOK\033[0m."
 
@@ -44,7 +44,7 @@ norm:
 				norminette -R CheckDefine $(INCL)
 
 clean:
-				@$(RM) -r $(OBJDIR)
+				@$(RM) $(OBJS)
 				@echo "Removed object files."
 
 fclean:			clean

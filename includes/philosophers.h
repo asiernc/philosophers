@@ -6,7 +6,7 @@
 /*   By: anovio-c <anovio-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 14:20:55 by anovio-c          #+#    #+#             */
-/*   Updated: 2024/04/16 22:01:20 by asiercara        ###   ########.fr       */
+/*   Updated: 2024/04/17 10:59:27 by anovio-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <sys/time.h> // gettimeofday()
 # include <pthread.h> // thread API
 
-typedef struct	s_philo
+typedef struct s_philo
 {
 	pthread_t			thread;
 	int					num;
@@ -37,7 +37,7 @@ typedef struct	s_philo
 	pthread_mutex_t		fork_l;
 }						t_philo;
 
-typedef struct	s_data
+typedef struct s_data
 {
 	int					num_of_philos;
 	int					dead_flag;
@@ -49,10 +49,10 @@ typedef struct	s_data
 
 // Init struct
 
-void		structure_init(t_data *data, char **argv);
-void		philos_init(t_data *data, char **argv);
-void		fill_fixes_values(t_philo *philo, char **argv);
-int			threads_init(t_data *data);
+void	structure_init(t_data *data, char **argv);
+void	philos_init(t_data *data, char **argv);
+void	fill_fixes_values(t_philo *philo, char **argv);
+int		threads_init(t_data *data);
 
 // Philo routine
 
@@ -71,18 +71,16 @@ int		check_all_ate(t_philo *philo);
 
 // Philosophers utils
 
-int			check_input(char **args);
-int			ft_error(char *str);
-void		print_msg(char *str, int philo_num, t_philo *philo);
-size_t		get_time(void);
-int			ft_usleep(size_t miliseconds);
-void		destroy_mutex(t_data *data);
-
+int		check_input(char **args);
+void	print_msg(char *str, int philo_num, t_philo *philo);
+size_t	get_time(void);
+int		ft_usleep(size_t miliseconds);
+void	destroy_mutex(char *str, t_data *data);
 
 // Libft utils
 
-int			ft_atoi(char *str);
-int			ft_isspace(int ch);
-int			ft_isdigit(int ch);
+int		ft_atoi(char *str);
+int		ft_isspace(int ch);
+int		ft_isdigit(int ch);
 
 #endif

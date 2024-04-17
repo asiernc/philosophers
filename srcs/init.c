@@ -6,7 +6,7 @@
 /*   By: asiercara <marvin@42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 22:11:23 by asiercara         #+#    #+#             */
-/*   Updated: 2024/04/16 22:06:34 by asiercara        ###   ########.fr       */
+/*   Updated: 2024/04/17 10:59:03 by anovio-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	structure_init(t_data *data, char **argv)
 	data->num_of_philos = ft_atoi(argv[1]);
 	data->philo = malloc(sizeof(t_philo) * data->num_of_philos);
 	if (!data->philo)
-		ft_error("Allocation error");
+		destroy_mutex("Allocation error", NULL);
 	data->dead_flag = 0;
 	pthread_mutex_init(&data->print_mutex, NULL);
 	pthread_mutex_init(&data->eat_mutex, NULL);
@@ -66,22 +66,22 @@ int	threads_init(t_data *data)
 	int			i;
 
 	if (pthread_create(&security_guard, NULL, &controller, data->philo) != 0)
-		ft_error("Thread create error");
+		destroy_mutex("Thread create error", data);
 	i = 0;
 	while (i < data->num_of_philos)
 	{
 		if (pthread_create(&data->philo[i].thread, NULL,
 				&philo_routine, &data->philo[i]) != 0)
-			ft_error("Thread create error");
+			destroy_mutex("Thread create error", data);
 		i++;
 	}
 	if (pthread_join(security_guard, NULL) != 0)
-		ft_error("Thread join error");
+		destroy_mutex("Thread join error", data);
 	i = 0;
 	while (i < data->num_of_philos)
 	{
 		if (pthread_join(data->philo[i].thread, NULL) != 0)
-			ft_error("Thread join error");
+			destroy_mutex("Thread join error", data);
 		i++;
 	}
 	return (0);

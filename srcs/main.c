@@ -6,16 +6,18 @@
 /*   By: asiercara <marvin@42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 21:11:47 by asiercara         #+#    #+#             */
-/*   Updated: 2024/04/16 21:27:46 by asiercara        ###   ########.fr       */
+/*   Updated: 2024/04/17 11:06:41 by anovio-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
 
-void	destroy_mutex(t_data *data)
+void	destroy_mutex(char *str, t_data *data)
 {
 	int	i;
 
+	if (str)
+		printf("%s\n", str);
 	pthread_mutex_destroy(&data->print_mutex);
 	pthread_mutex_destroy(&data->eat_mutex);
 	pthread_mutex_destroy(&data->dead_mutex);
@@ -32,15 +34,18 @@ int	main(int argc, char **argv)
 	t_data	data;
 
 	if (argc < 5 || argc > 6)
+	{
+		destroy_mutex("Incorrect number of arguments", NULL);
 		return (1);
+	}
 	if (check_input(argv))
 	{
-		write(2, "Arguments error\n", 16);
-		return (0);
+		printf("Arguments error.\n");
+		return (1);
 	}
 	structure_init(&data, argv);
 	philos_init(&data, argv);
 	threads_init(&data);
-	destroy_mutex(&data);
+	destroy_mutex(NULL, &data);
 	return (0);
 }
